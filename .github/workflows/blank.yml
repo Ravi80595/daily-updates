@@ -1,0 +1,23 @@
+name: Daily Contribution Hack
+
+on:
+  schedule:
+    # Runs at 05:00 UTC (10:30 AM IST) and 17:00 UTC (10:30 PM IST)
+    - cron: '30 4,16 * * *'
+  workflow_dispatch: # Keep this so you can trigger it manually whenever you want
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Update Activity Log
+        run: |
+          echo "Last active on: $(date)" >> activity.txt
+          git config --local user.email "your-email@example.com"
+          git config --local user.name "Your Name"
+          git add activity.txt
+          git commit -m "update: sync activity log [skip ci]"
+          git push
