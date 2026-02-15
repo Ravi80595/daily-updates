@@ -2,9 +2,9 @@ name: Daily Contribution Hack
 
 on:
   schedule:
-    # Runs at 04:30 UTC (10:00 AM IST) and 16:30 UTC (10:00 PM IST)
+    # Runs at 10:00 AM IST (04:30 UTC) and 10:00 PM IST (16:30 UTC)
     - cron: '30 4,16 * * *'
-  workflow_dispatch: # Keep this so you can trigger it manually whenever you want
+  workflow_dispatch: # Allows you to trigger it manually from the Actions tab
 
 jobs:
   build:
@@ -13,11 +13,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Update Activity Log
+      - name: Update Daily Dev Log
         run: |
-          echo "Last active on: $(date)" >> activity.txt
-          git config --local user.email "your-email@example.com"
-          git config --local user.name "Your Name"
-          git add activity.txt
-          git commit -m "update: sync activity log [skip ci]"
+          # Professional Senior Dev Tips to rotate through
+          TIPS=(
+            "Clean code is not written by the first time, but by refactoring."
+            "Functions should do one thing. They should do it well."
+            "Always leave the code cleaner than you found it."
+            "TypeScript is your friend; use strict types for safety."
+            "The best way to fix a bug is to make it impossible to happen."
+            "Focus on readability; code is read more often than it is written."
+            "Don't repeat yourself (DRY) but avoid premature abstraction."
+            "A senior dev knows when to use a library and when to build it."
+            "Keep your React components small and focused on a single responsibility."
+            "Write tests not to find bugs, but to document behavior."
+          )
+
+          # Pick a random tip from the array
+          RANDOM_TIP=${TIPS[$RANDOM % ${#TIPS[@]}]}
+          DATE=$(date +'%Y-%m-%d %H:%M:%S')
+
+          # Append to a Markdown file for a better look on the profile
+          echo "### Log Entry: $DATE" >> DAILY_LOG.md
+          echo "> $RANDOM_TIP" >> DAILY_LOG.md
+          echo -e "\n---\n" >> DAILY_LOG.md
+
+      - name: Commit and Push
+        run: |
+          # CRITICAL: Use your actual GitHub email here
+          git config --local user.email "rsharma80595@gmail.com"
+          git config --local user.name "Ravi80595"
+          
+          git add DAILY_LOG.md
+          
+          # Professional commit message
+          git commit -m "docs: sync daily dev log $DATE [skip ci]"
           git push
