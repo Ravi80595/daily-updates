@@ -15,7 +15,7 @@ jobs:
 
       - name: Generate Deep Activity
         run: |
-          # 1. Setup Identity (MANDATORY: Use your GitHub email)
+          # 1. Setup Identity
           git config --local user.email "rssharmakapro@gmail.com"
           git config --local user.name "Ravi80595"
 
@@ -33,8 +33,12 @@ jobs:
             "microservices-communication"
           )
           
-          # 4. LOOP 5 TIMES PER RUN (Total 10 commits/day for Dark Green)
-          for i in {1..5}
+          # 4. RANDOMIZED LOOP (Pick a random number between 3 and 10)
+          # This makes the "Green Board" look natural (varying intensity)
+          ITERATIONS=$(( ( RANDOM % 8 ) + 3 ))
+          echo "Bhai, today we are doing $ITERATIONS commits to keep it random."
+
+          for ((i=1; i<=$ITERATIONS; i++))
           do
             # Pick random topic and generate unique filename
             RANDOM_TOPIC=${TOPICS[$RANDOM % ${#TOPICS[@]}]}
@@ -52,7 +56,11 @@ jobs:
             # Commit each file individually
             git add .
             git commit -m "feat: optimize $RANDOM_TOPIC logic ($TIMESTAMP) [skip ci]"
+            
+            # 5. RANDOM DELAY (1 to 4 seconds) 
+            # So Git history doesn't show all commits at the exact same second
+            sleep $(( ( RANDOM % 4 ) + 1 ))
           done
 
-          # 5. Push all 5 commits
+          # 6. Push all commits
           git push
