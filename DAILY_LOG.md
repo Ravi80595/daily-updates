@@ -803,3 +803,8 @@
 
 ---
 
+### Log Entry: 2026-05-06 17:56:48
+> Write tests not to find bugs, but to document behavior.
+
+---
+
