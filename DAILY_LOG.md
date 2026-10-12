@@ -2348,3 +2348,8 @@
 
 ---
 
+### Log Entry: 2026-10-12 12:15:29
+> Write tests not to find bugs, but to document behavior.
+
+---
+
