@@ -2448,3 +2448,8 @@
 
 ---
 
+### Log Entry: 2026-10-22 09:30:58
+> A senior dev knows when to use a library and when to build it.
+
+---
+
