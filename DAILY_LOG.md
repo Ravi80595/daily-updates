@@ -2703,3 +2703,8 @@
 
 ---
 
+### Log Entry: 2026-11-17 00:20:28
+> Don't repeat yourself (DRY) but avoid premature abstraction.
+
+---
+
