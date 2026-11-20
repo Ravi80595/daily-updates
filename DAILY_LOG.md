@@ -2738,3 +2738,8 @@
 
 ---
 
+### Log Entry: 2026-11-20 13:20:16
+> Keep your React components small and focused on a single responsibility.
+
+---
+
