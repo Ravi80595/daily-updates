@@ -2768,3 +2768,8 @@
 
 ---
 
+### Log Entry: 2026-11-23 15:04:53
+> Don't repeat yourself (DRY) but avoid premature abstraction.
+
+---
+
